@@ -11,16 +11,16 @@ public class P172928 {
 //		System.out.println("다음 위치 확인중... " + i +  "(i) " + j + "(j)");
 		
 		if(String.valueOf(r).equals("N") && 0<=i-1) {
-			if(String.valueOf(solPark[i-1][j]).equals("O")) return true;
+			if(String.valueOf(solPark[i-1][j]).equals("O") || String.valueOf(solPark[i-1][j]).equals("S")) return true;
 		}
 		if(String.valueOf(r).equals("S") && i+1<solPark.length) {
-			if(String.valueOf(solPark[i+1][j]).equals("O")) return true;
+			if(String.valueOf(solPark[i+1][j]).equals("O") || String.valueOf(solPark[i+1][j]).equals("S")) return true;
 		}
 		if(String.valueOf(r).equals("W") && 0<=j-1) {
-			if(String.valueOf(solPark[i][j-1]).equals("O")) return true;
+			if(String.valueOf(solPark[i][j-1]).equals("O") || String.valueOf(solPark[i][j-1]).equals("S")) return true;
 		}
 		if(String.valueOf(r).equals("E") && j+1<solPark[i].length ) {
-			if(String.valueOf(solPark[i][j+1]).equals("O")) return true;
+			if(String.valueOf(solPark[i][j+1]).equals("O") || String.valueOf(solPark[i][j+1]).equals("S")) return true;
 		}
 		
 		return false;
