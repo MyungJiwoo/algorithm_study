@@ -3,6 +3,7 @@ package programmers;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -12,22 +13,46 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class P178871 {
+	 public static <K, V> K getKey(Map<K, V> map, V value) {
+		 
+		 
+	        for (K key : map.keySet()) {
+//	        	System.out.println(map.get(key) + "key");
+//	        	System.out.println(value + "value");
+	            if (value == map.get(key)) {
+	                return key;
+	            }
+	        }
+	        return null;
+	    }
    
    public static void main(String[] args) {
       String[] players = {"mumu", "soe", "poe", "kai", "mine"};
       String[] callings = {"kai", "kai", "mine", "mine"};
       
-      // 해시맵으로 변환
-      Set<String> setPlayers = new HashSet<String>(Arrays.asList(players));
-      Set<String> setCallings = new HashSet<String>(Arrays.asList(callings));
-      
-
-      Iterator<String> iter = setCallings.iterator();
-      int index = 0;
-      while(iter.hasNext()) {
-         System.out.println(setPlayers.contains(iter.next()));
-         index++;
+      HashMap<String, Integer> hashPlayers = new HashMap<>();
+      for(int i=0; i<players.length; i++) {
+    	  hashPlayers.put(players[i], i);
       }
+      
+//      System.out.println(hashPlayers);
+      
+      for(int i=0; i<callings.length; i++) {
+    	  if(hashPlayers.containsKey(callings[i])) {
+    		  int rank = hashPlayers.get(callings[i]);
+//    		  System.out.println(rank);
+    		  hashPlayers.replace(callings[i], ++rank);
+    		  
+//    		  hashPlayers.containsValue(rank-1);
+    		  int pre = rank-1;
+    		  hashPlayers.replace(callings[i], ++rank);
+    		  System.out.println(getKey(hashPlayers, rank) + " : rank-1");
+    		  
+//    		  System.out.println(hashPlayers.containsValue(callings[i]));
+    	  }
+      }
+      
+//      System.out.println(hashPlayers);
 
 
 //      System.out.println("----------------------------------");
