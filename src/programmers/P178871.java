@@ -35,24 +35,37 @@ public class P178871 {
     	  hashPlayers.put(players[i], i);
       }
       
-//      System.out.println(hashPlayers);
+      System.out.println(hashPlayers);
       
       for(int i=0; i<callings.length; i++) {
     	  if(hashPlayers.containsKey(callings[i])) {
     		  int rank = hashPlayers.get(callings[i]);
 //    		  System.out.println(rank);
-    		  hashPlayers.replace(callings[i], ++rank);
+    		  hashPlayers.replace(callings[i], --rank);
+    		  System.out.println("순위 up " + hashPlayers);
     		  
 //    		  hashPlayers.containsValue(rank-1);
-    		  int pre = rank-1;
-    		  hashPlayers.replace(callings[i], ++rank);
-    		  System.out.println(getKey(hashPlayers, rank) + " : rank-1");
+    		  int pre = rank+2;
+    		  int preRank = pre++;
+    		  System.out.println(getKey(hashPlayers, pre));
+    		  hashPlayers.replace(getKey(hashPlayers, pre), ++preRank);
+    		  System.out.println("선두 순위 down " + hashPlayers);
+//    		  int preIndex = pre;
+//    		  
+//    		  for(int j=pre; j>=0; j--) {
+//    			  System.out.println("이전 등수 : " + getKey(hashPlayers, j));
+//        		  
+//        		  System.out.println("선두 순위 down " + hashPlayers);
+//    		  }
+    		  
+    		  
+//    		  System.out.println(getKey(hashPlayers, rank) + " : rank-1");
     		  
 //    		  System.out.println(hashPlayers.containsValue(callings[i]));
     	  }
       }
       
-//      System.out.println(hashPlayers);
+      System.out.println(hashPlayers);
 
 
 //      System.out.println("----------------------------------");
