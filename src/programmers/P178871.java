@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.Map;
 import java.util.function.Function;
@@ -17,8 +18,6 @@ public class P178871 {
 		 
 		 
 	        for (K key : map.keySet()) {
-//	        	System.out.println(map.get(key) + "key");
-//	        	System.out.println(value + "value");
 	            if (value == map.get(key)) {
 	                return key;
 	            }
@@ -40,47 +39,25 @@ public class P178871 {
       for(int i=0; i<callings.length; i++) {
     	  if(hashPlayers.containsKey(callings[i])) {
     		  int rank = hashPlayers.get(callings[i]);
-//    		  System.out.println(rank);
+    		  int r = rank;
+    		  
+    		  // 선두 순위 내리기
+    		  hashPlayers.replace(getKey(hashPlayers, r-1), r);
+    		  System.out.println("선두 순위 down " + hashPlayers);
+    		  
+    		  System.out.println(rank);
+    		  // 이름 불린 애 등수 up
     		  hashPlayers.replace(callings[i], --rank);
     		  System.out.println("순위 up " + hashPlayers);
-    		  
-//    		  hashPlayers.containsValue(rank-1);
-    		  int pre = rank+2;
-    		  int preRank = pre++;
-    		  System.out.println(getKey(hashPlayers, pre));
-    		  hashPlayers.replace(getKey(hashPlayers, pre), ++preRank);
-    		  System.out.println("선두 순위 down " + hashPlayers);
-//    		  int preIndex = pre;
-//    		  
-//    		  for(int j=pre; j>=0; j--) {
-//    			  System.out.println("이전 등수 : " + getKey(hashPlayers, j));
-//        		  
-//        		  System.out.println("선두 순위 down " + hashPlayers);
-//    		  }
-    		  
-    		  
-//    		  System.out.println(getKey(hashPlayers, rank) + " : rank-1");
-    		  
-//    		  System.out.println(hashPlayers.containsValue(callings[i]));
     	  }
       }
       
-      System.out.println(hashPlayers);
-
-
-//      System.out.println("----------------------------------");
-//       ArrayList<String> playersList2 = new ArrayList<String>();
-//         
-//       for(int i=0; i<players.length; i++)   {
-//          playersList2.add(players[i]);
-//       }
-//         
-//       for(int i=0; i<callings.length; i++) {
-//           int index = playersList2.indexOf(callings[i]);
-//           System.out.println(index + ", " + (index-1));
-//              Collections.swap(playersList2, index, index-1);
-//              System.out.println(playersList2);
-//       }
+      ArrayList<String> list = new ArrayList<>();
+      for(int i=0; i<hashPlayers.size();i++) {
+    	  list.add(getKey(hashPlayers, i));
+      }
+      
+      System.out.println(list);
       
    }
 }
