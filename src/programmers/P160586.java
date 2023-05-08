@@ -7,7 +7,7 @@ public class P160586 {
 	public static void main(String[] args) {
 		String[] keymap = {"ABACD", "BCEFD"};
 		String[] targets = {"ABCD", "AABB"};
-		int[] result = new int[keymap.length];
+		int[] result = new int[targets.length];
 		
 		HashMap<Character, Integer> keys = new HashMap<Character, Integer>();
 		
@@ -24,6 +24,8 @@ public class P160586 {
 			}
 		}
 		
+		System.out.println(keys);
+		
 		
 		for(int i=0; i<targets.length; i++) {
 			for(int j=0; j<targets[i].length(); j++) {
@@ -33,6 +35,7 @@ public class P160586 {
 				}
 				else {
 					result[i] = -1;
+					break;
 				}
 			}
 		}
