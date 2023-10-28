@@ -8,3 +8,5 @@ function solution(num_list) {
 
     return answer;
 }
+
+// [P0C] P120824: 짝수 홀수 개수
